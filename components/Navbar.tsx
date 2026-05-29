@@ -80,7 +80,7 @@ export const Navbar = () => {
               fontWeight: 900,
               textTransform: 'uppercase',
               letterSpacing: '0.25em',
-              fontSize: '20px',
+              fontSize: '32px',
               display: 'flex',
               alignItems: 'center',
               gap: '8px'

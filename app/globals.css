@@ -50,7 +50,12 @@ body {
   color: #00f2ff !important;
   animation: eye-glow 2s infinite ease-in-out;
   cursor: pointer;
+  
+  /* Добавь эти строки */
+  font-size: 90px !important; /* Если это иконка-шрифт */
+  padding: 10px;              /* Добавит "воздуха" вокруг */
 }
+
 
 /* ТЕ САМЫЕ КРАСИВЫЕ КНОПКИ */
 .cyber-btn {
