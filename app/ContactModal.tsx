@@ -9,10 +9,27 @@ export const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
   if (!isOpen) return null;
 
   const contactLinks = [
-    { name: "✈️ Личка Telegram", href: "https://t.me/victimok" },
-    { name: "📢 Наш Канал", href: "https://t.me/victimoklabs" },
-    { name: "✉️ Рабочая Почта", href: "mailto:victimoklabs@gmail.com" }
-  ];
+  { name: "✈️ Личка Telegram", href: "https://t.me/victimok", isTelegram: true },
+  { name: "📢 Наш Канал", href: "https://t.me/victimoklabs", isTelegram: true },
+  { name: "✉️ Рабочая Почта", href: "mailto:victimoklabs@gmail.com", isTelegram: false }
+];
+
+// Внутри компонента используй такой обработчик:
+const handleLinkClick = (e: React.MouseEvent, link: any) => {
+  if (link.isTelegram) {
+    e.preventDefault();
+    const handle = link.href.split('/').pop();
+    
+    // Пытаемся открыть через системный протокол
+    window.location.href = `tg://resolve?domain=${handle}`;
+    
+    // Если через 1.5 сек приложение не открылось (мы все еще на сайте), 
+    // идем в веб-версию в новой вкладке
+    setTimeout(() => {
+      window.open(link.href, '_blank', 'noopener,noreferrer');
+    }, 1500);
+  }
+};
 
   return (
     <div 
