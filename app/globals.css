@@ -1,26 +1,201 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Полный сброс дефолтных синих ссылок браузера */
+a, a:visited {
+  color: #9ca3af !important;
+  text-decoration: none !important;
 }
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+a:hover {
+  color: #00f2ff !important;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #060608 !important;
+  color: #ffffff !important;
+  font-family: 'Orbitron', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* Высокотехнологичная фоновая сетка */
+  background-image: 
+    linear-gradient(rgba(0, 242, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 242, 255, 0.04) 1px, transparent 1px);
+  background-size: 50px 50px;
+  background-position: center;
+}
+
+/* Центральный терминал */
+.cyber-terminal {
+  border: 1px solid rgba(0, 242, 255, 0.25);
+  background: rgba(0, 0, 0, 0.85);
+  box-shadow: 0 0 30px rgba(0, 242, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+/* Анимация пульсации глаза */
+@keyframes eye-glow {
+  0%, 100% { 
+    transform: scale(1); 
+    filter: drop-shadow(0 0 4px #00f2ff) drop-shadow(0 0 10px #00f2ff); 
+  }
+  50% { 
+    transform: scale(1.08); 
+    filter: drop-shadow(0 0 12px #00f2ff) drop-shadow(0 0 25px #00f2ff); 
+  }
+}
+.cyber-eye {
+  display: inline-block;
+  color: #00f2ff !important;
+  animation: eye-glow 2s infinite ease-in-out;
+  cursor: pointer;
+}
+
+/* ТЕ САМЫЕ КРАСИВЫЕ КНОПКИ */
+.cyber-btn {
+  background: linear-gradient(135deg, rgba(0, 242, 255, 0.1), rgba(0, 242, 255, 0.02));
+  border: 1px solid rgba(0, 242, 255, 0.4);
+  color: #00f2ff !important;
+  padding: 12px 28px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  tracking-widest: 0.15em;
+  border-radius: 8px; /* Красивое технологичное закругление */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(0, 242, 255, 0.05);
+}
+
+.cyber-btn:hover {
+  background: #00f2ff;
+  color: #000000 !important;
+  box-shadow: 0 0 25px rgba(0, 242, 255, 0.6);
+  border-color: #00f2ff;
+  transform: translateY(-2px);
+}
+
+.cyber-btn-secondary {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff !important;
+  padding: 12px 28px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.cyber-btn-secondary:hover {
+  border-color: #ffffff;
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   НАВБАР И СТЕКЛЯННЫЕ КНОПКИ НАВИГАЦИИ (VICTIMOK LABS)
+   ========================================================================== */
+
+/* Контейнер навбара */
+.cyber-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  border-bottom: 1px solid rgba(0, 242, 255, 0.2);
+  background: rgba(5, 5, 8, 0.75);
+  backdrop-filter: blur(12px);
+  padding: 15px 40px;
+  box-sizing: border-box;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+/* Стандартная стеклянная кнопка */
+.glass-btn {
+  color: #d1d5db !important;
+  background: rgba(0, 242, 255, 0.03);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(0, 242, 255, 0.15);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 4px 6px rgba(0, 0, 0, 0.2);
+  text-decoration: none;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+  padding: 9px 18px;
+  border-radius: 8px; /* Фирменное закругление */
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-block;
+  cursor: pointer;
+}
+
+/* Ховер стандартной кнопки */
+.glass-btn:hover {
+  background: rgba(0, 242, 255, 0.12);
+  border-color: rgba(0, 242, 255, 0.45);
+  color: #ffffff !important;
+  box-shadow: 0 0 15px rgba(0, 242, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+/* Клик по стандартной кнопке */
+.glass-btn:active {
+  transform: scale(0.96) translateY(0px);
+  background: rgba(0, 242, 255, 0.18);
+}
+
+/* Акцентная кнопка (Личный Кабинет) */
+.glass-btn-active {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  backdrop-filter: blur(8px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important; /* Делаем рамку чуть приглушеннее */
+  
+  /* Полностью вырезаем любое свечение и тени */
+  box-shadow: none !important;
+  filter: none !important;
+  text-shadow: none !important;
+  
+  text-decoration: none !important;
+  font-size: 13px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.12em !important;
+  font-weight: 700 !important;
+  padding: 10px 22px !important;
+  border-radius: 8px !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  display: inline-block !important;
+  cursor: pointer !important;
+}
+/* Ховер акцентной кнопки */
+.glass-btn-active:hover {
+  color: #060608 !important;
+  background: #ffffff !important;
+  border-color: #ffffff !important;
+  
+  /* И на ховере тоже никакого неона */
+  box-shadow: none !important;
+  filter: none !important;
+  transform: translateY(-1px) !important;
+}
+
+
+/* Клик по акцентной кнопке */
+.glass-btn-active:hover {
+  color: #ffffff !important; /* При наведении текст подсвечивается белым */
+  background: rgba(0, 242, 255, 0.15); /* Фон мягко наливается бирюзой */
+  border-color: #00f2ff;
+  box-shadow: 0 0 25px rgba(0, 242, 255, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  transform: translateY(-1px);
 }
