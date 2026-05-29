@@ -5,10 +5,12 @@ import "./globals.css";
 
 const orbitron = Orbitron({ subsets: ["latin"] });
 
-export const metadata: Metadata = {
-  title: "Victimok Labs",
-  description: "Next Gen Engineering & Development",
+export const metadata = {
+  title: 'Victimok Labs | Инженерный штаб и разработка',
+  description: 'Victimok Labs — разработка софта, кастомная сборка электроники и технический аудит.',
+  keywords: ['Victimok Labs', 'Разработка', 'FPV', 'CRM', 'Инженерия'],
 };
+
 
 export default function RootLayout({
   children,
@@ -29,4 +31,5 @@ export default function RootLayout({
     </html>
   );
 }
+
 
