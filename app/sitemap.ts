@@ -1,9 +1,11 @@
 export default function sitemap() {
+  const base = "https://victimok-labs.vercel.app";
+  const lastModified = new Date();
+
   return [
-    {
-      url: 'https://victimok-labs.vercel.app', // Укажи свой домен
-      lastModified: new Date(),
-    },
-    // Добавь остальные страницы, если есть
-  ]
+    { url: base, lastModified },
+    { url: `${base}/services`, lastModified },
+    { url: `${base}/shop`, lastModified },
+    { url: `${base}/dashboard`, lastModified },
+  ];
 }
