@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 export default function ServicesPage() {
   const deepServices = [
     {
@@ -90,137 +92,107 @@ export default function ServicesPage() {
   ];
 
   return (
-    <main style={{ backgroundColor: "#060608", color: "#fff", minHeight: "100vh" }}>
-      <div style={{
-        maxWidth: "1300px",
-        margin: "0 auto",
-        padding: "140px 40px 80px 40px",
-        boxSizing: "border-box"
-      }}>
-        
-        {/* Хедер прайса */}
-        <div style={{ textAlign: "center", marginBottom: "80px" }}>
-          <div style={{ color: "#00f2ff", fontFamily: "monospace", fontSize: "12px", letterSpacing: "0.4em", marginBottom: "15px" }}>
-            // EXTENDED_PRICE_LIST_v4.26 // ALL_SUB_SYSTEMS_PARSED
-          </div>
-          <h1 style={{ fontSize: "48px", fontWeight: 950, letterSpacing: "0.15em", textTransform: "uppercase", margin: "0 0 20px 0" }}>
-            ГЛОБАЛЬНАЯ СПЕЦИФИКАЦИЯ СТОИМОСТИ
-          </h1>
-          <p style={{ color: "#6b7280", maxWidth: "700px", margin: "0 auto", fontSize: "14px", lineHeight: "1.6" }}>
-            Фиксированная тарификация технологических процессов Victimok Labs. Каждая деталь, каждый логический гейт и миллиметр проводника подвергаются полному техническому контролю.
-          </p>
+    <div className="page-shell" style={{ alignItems: "stretch", maxWidth: "1300px", margin: "0 auto" }}>
+      <div className="page-header">
+        <div className="home-node">
+          // CATALOG_NODE_v4.26 // ALL_SUB_SYSTEMS_PARSED
         </div>
+        <h1 className="page-title">КАТАЛОГ УСЛУГ ЛАБОРАТОРИИ</h1>
+        <p style={{ color: "#6b7280", maxWidth: "700px", margin: "0 auto", fontSize: "14px", lineHeight: "1.6" }}>
+          Полная спецификация технологических процессов Victimok Labs. Каждая деталь, каждый логический гейт и миллиметр проводника подвергаются полному техническому контролю. Стоимость — стартовая, точный контур согласовывается через канал связи.
+        </p>
+      </div>
 
-        {/* Сверхмассивная сетка категорий */}
-        <div>
-          {deepServices.map((cat) => (
-            <div 
-              key={cat.category} 
-              style={{
-                background: "rgba(10, 10, 15, 0.4)",
-                backdropFilter: "blur(16px)",
-                border: "1px solid rgba(0, 242, 255, 0.1)",
-                borderLeft: `4px solid ${cat.color}`,
-                borderRadius: "16px",
-                padding: "45px",
-                marginBottom: "50px",
-                boxShadow: "0 20px 40px rgba(0,0,0,0.4)"
-              }}
-            >
-              {/* Шапка категории */}
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: "15px", marginBottom: "20px" }}>
-                <h2 style={{ color: "#fff", fontSize: "22px", fontWeight: 900, letterSpacing: "0.05em", margin: 0 }}>
-                  {cat.category}
-                </h2>
-                <span style={{
-                  fontFamily: "monospace",
-                  fontSize: "11px",
-                  color: cat.color,
-                  border: `1px solid ${cat.color}40`,
-                  background: `${cat.color}05`,
-                  padding: "4px 10px",
-                  borderRadius: "6px",
-                  letterSpacing: "0.1em"
-                }}>
-                  {cat.badge}
-                </span>
-              </div>
+      <div style={{ width: "100%" }}>
+        {deepServices.map((cat) => (
+          <div
+            key={cat.category}
+            className="catalog-card"
+            style={{ borderLeft: `4px solid ${cat.color}` }}
+          >
+            <div className="catalog-head">
+              <h2 style={{ color: "#fff", fontSize: "clamp(16px, 3.6vw, 22px)", fontWeight: 900, letterSpacing: "0.05em", margin: 0, overflowWrap: "anywhere" }}>
+                {cat.category}
+              </h2>
+              <span style={{
+                fontFamily: "monospace",
+                fontSize: "11px",
+                color: cat.color,
+                border: `1px solid ${cat.color}40`,
+                background: `${cat.color}05`,
+                padding: "4px 10px",
+                borderRadius: "6px",
+                letterSpacing: "0.1em"
+              }}>
+                {cat.badge}
+              </span>
+            </div>
 
-              <p style={{ color: "#9ca3af", fontSize: "14px", lineHeight: "1.7", margin: "0 0 35px 0", maxWidth: "1100px" }}>
-                {cat.description}
-              </p>
+            <p style={{ color: "#9ca3af", fontSize: "14px", lineHeight: "1.7", margin: "0 0 35px 0", maxWidth: "1100px" }}>
+              {cat.description}
+            </p>
 
-              {/* Рендеринг вложенных подгрупп */}
-              <div style={{ display: "flex", flexDirection: "column", gap: "35px" }}>
-                {cat.groups.map((group) => (
-                  <div key={group.groupName}>
-                    <h3 style={{ 
-                      color: "#fff", 
-                      fontSize: "15px", 
-                      fontWeight: 700, 
-                      textTransform: "uppercase", 
-                      letterSpacing: "0.1em", 
-                      marginBottom: "15px",
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "10px"
-                    }}>
-                      <span style={{ width: "6px", height: "6px", background: cat.color, borderRadius: "50%" }}></span>
-                      {group.groupName}
-                    </h3>
+            <div style={{ display: "flex", flexDirection: "column", gap: "35px" }}>
+              {cat.groups.map((group) => (
+                <div key={group.groupName}>
+                  <h3 style={{
+                    color: "#fff",
+                    fontSize: "15px",
+                    fontWeight: 700,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.1em",
+                    marginBottom: "15px",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "10px"
+                  }}>
+                    <span style={{ width: "6px", height: "6px", background: cat.color, borderRadius: "50%", flexShrink: 0 }} />
+                    {group.groupName}
+                  </h3>
 
-                    {/* Строки услуг */}
-                    <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-                      {group.items.map((item) => (
-                        <div 
-                          key={item.name} 
+                  <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+                    {group.items.map((item) => (
+                      <div
+                        key={item.name}
+                        className="price-row"
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.background = "rgba(255, 255, 255, 0.03)";
+                          e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.08)";
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.background = "rgba(255, 255, 255, 0.01)";
+                          e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.04)";
+                        }}
+                      >
+                        <span className="price-row-name">{item.name}</span>
+                        <span
+                          className="price-row-cost"
                           style={{
-                            display: "flex",
-                            justifyContent: "space-between",
-                            alignItems: "center",
-                            padding: "14px 20px",
-                            background: "rgba(255, 255, 255, 0.01)",
-                            border: "1px solid rgba(255, 255, 255, 0.04)",
-                            borderRadius: "8px", /* Четкое скругление 8px в единый стиль */
-                            transition: "all 0.2s ease"
-                          }}
-                          onMouseEnter={(e) => {
-                            e.currentTarget.style.background = "rgba(255, 255, 255, 0.03)";
-                            e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.08)";
-                          }}
-                          onMouseLeave={(e) => {
-                            e.currentTarget.style.background = "rgba(255, 255, 255, 0.01)";
-                            e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.04)";
+                            color: cat.color,
+                            background: `${cat.color}08`,
+                            border: `1px solid ${cat.color}15`
                           }}
                         >
-                          <span style={{ color: "#d1d5db", fontSize: "13.5px", fontWeight: 500 }}>
-                            {item.name}
-                          </span>
-                          <span style={{ 
-                            color: cat.color, 
-                            fontFamily: "monospace", 
-                            fontWeight: 700, 
-                            fontSize: "14px",
-                            letterSpacing: "0.05em",
-                            background: `${cat.color}08`,
-                            padding: "4px 12px",
-                            borderRadius: "6px",
-                            border: `1px solid ${cat.color}15`
-                          }}>
-                            {item.price}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
+                          {item.price}
+                        </span>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-
+          </div>
+        ))}
       </div>
-    </main>
+
+      <div className="home-cta-row" style={{ marginTop: "12px" }}>
+        <Link href="/shop">
+          <button type="button" className="cyber-btn">Прайс-Лист Магазина</button>
+        </Link>
+        <Link href="/">
+          <button type="button" className="cyber-btn-secondary">Вернуться в терминал</button>
+        </Link>
+      </div>
+    </div>
   );
 }
