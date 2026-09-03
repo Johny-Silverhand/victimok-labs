@@ -5,6 +5,7 @@ import { AuthError } from "next-auth";
 import bcrypt from "bcryptjs";
 import { prisma } from "@/lib/prisma";
 import { auth, signIn, signOut } from "@/lib/auth";
+import { isAdmin, isBootstrapAdmin, isRequestStatus, isRole, isStaff } from "@/lib/roles";
 
 function clean(value: FormDataEntryValue | null) {
   return String(value ?? "").trim();
@@ -36,6 +37,7 @@ export async function registerAction(_prev: { error?: string } | null, formData:
       email,
       phone: phone || null,
       passwordHash,
+      role: isBootstrapAdmin(email) ? "admin" : "user",
     },
   });
 
@@ -87,6 +89,19 @@ async function requireUser() {
   return id;
 }
 
+async function requireStaffUser() {
+  const id = await requireUser();
+  const user = await prisma.user.findUnique({ where: { id } });
+  if (!user || !isStaff(user.role)) redirect("/dashboard");
+  return user;
+}
+
+async function requireAdminUser() {
+  const user = await requireStaffUser();
+  if (!isAdmin(user.role)) redirect("/dashboard");
+  return user;
+}
+
 export async function updateProfileAction(_prev: { error?: string; ok?: boolean } | null, formData: FormData) {
   const userId = await requireUser();
   const name = clean(formData.get("name"));
@@ -131,5 +146,50 @@ export async function createRequestAction(_prev: { error?: string; ok?: boolean 
   await prisma.request.create({
     data: { userId, title, details },
   });
+  return { ok: true, error: "" };
+}
+
+export async function updateRequestStatusAction(
+  _prev: { error?: string; ok?: boolean } | null,
+  formData: FormData,
+) {
+  await requireStaffUser();
+  const id = clean(formData.get("id"));
+  const status = clean(formData.get("status"));
+  if (!id) return { error: "Заявка не найдена." };
+  if (!isRequestStatus(status)) return { error: "Такого статуса нет." };
+
+  await prisma.request.update({ where: { id }, data: { status } });
+  return { ok: true, error: "" };
+}
+
+export async function updateUserRoleAction(
+  _prev: { error?: string; ok?: boolean } | null,
+  formData: FormData,
+) {
+  const actor = await requireAdminUser();
+  const id = clean(formData.get("id"));
+  const role = clean(formData.get("role"));
+  if (!id) return { error: "Человек не найден." };
+  if (!isRole(role)) return { error: "Такой роли нет." };
+
+  const target = await prisma.user.findUnique({ where: { id } });
+  if (!target) return { error: "Человек не найден." };
+
+  if (target.role === "admin" && role !== "admin") {
+    const admins = await prisma.user.count({ where: { role: "admin" } });
+    if (admins <= 1) {
+      return { error: "Нельзя снять последнего администратора." };
+    }
+  }
+
+  if (actor.id === target.id && role !== "admin") {
+    const admins = await prisma.user.count({ where: { role: "admin" } });
+    if (admins <= 1) {
+      return { error: "Нельзя снять роль с самого себя, пока вы единственный администратор." };
+    }
+  }
+
+  await prisma.user.update({ where: { id }, data: { role } });
   return { ok: true, error: "" };
 }

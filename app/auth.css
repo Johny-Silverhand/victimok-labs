@@ -173,6 +173,38 @@
   white-space: nowrap;
 }
 
+.role-chip,
+.staff-links {
+  color: #9ca3af;
+  font-size: 13px;
+  margin: 12px 0 0 0;
+}
+
+.staff-links a {
+  color: #00f2ff;
+}
+
+.request-client {
+  color: #9ca3af !important;
+  font-size: 13px !important;
+}
+
+.staff-inline-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: flex-end;
+  margin-top: 12px;
+}
+
+.staff-inline-form .auth-label {
+  flex: 1 1 180px;
+}
+
+.staff-inline-form .cyber-btn-secondary {
+  min-height: 44px;
+}
+
 @media (max-width: 800px) {
   .cabinet-grid {
     grid-template-columns: 1fr;
@@ -181,5 +213,10 @@
   .auth-card,
   .cabinet-card {
     padding: 24px 16px;
+  }
+
+  .staff-inline-form {
+    flex-direction: column;
+    align-items: stretch;
   }
 }
