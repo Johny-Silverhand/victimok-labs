@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { ContactModal } from "@/app/ContactModal";
 import { LogoutButton } from "@/components/LogoutButton";
+import { isAdmin, isStaff } from "@/lib/roles";
 
 const navLinks = [
   { name: "Главная", href: "/" },
@@ -16,6 +17,9 @@ export const Navbar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { data: session, status } = useSession();
   const loggedIn = status === "authenticated" && Boolean(session?.user);
+  const role = session?.user?.role;
+  const staff = isStaff(role);
+  const admin = isAdmin(role);
 
   return (
     <>
@@ -45,6 +49,16 @@ export const Navbar = () => {
                 <Link href="/dashboard" className="glass-btn-active">
                   Кабинет
                 </Link>
+                {staff ? (
+                  <Link href="/staff/requests" className="glass-btn">
+                    Заявки
+                  </Link>
+                ) : null}
+                {admin ? (
+                  <Link href="/staff/users" className="glass-btn">
+                    Люди
+                  </Link>
+                ) : null}
                 <LogoutButton />
               </>
             ) : (
