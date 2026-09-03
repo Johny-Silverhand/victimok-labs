@@ -6,6 +6,7 @@ export default function sitemap() {
     { url: base, lastModified },
     { url: `${base}/services`, lastModified },
     { url: `${base}/shop`, lastModified },
-    { url: `${base}/dashboard`, lastModified },
+    { url: `${base}/login`, lastModified },
+    { url: `${base}/register`, lastModified },
   ];
 }

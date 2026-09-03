@@ -1,69 +1,42 @@
-"use client";
+import { redirect } from "next/navigation";
+import { auth } from "@/lib/auth";
+import { prisma } from "@/lib/prisma";
+import { CabinetClient } from "./CabinetClient";
 
-import Link from "next/link";
+export default async function DashboardPage() {
+  const session = await auth();
+  if (!session?.user?.id) {
+    redirect("/login");
+  }
 
-export default function DashboardPage() {
+  const user = await prisma.user.findUnique({
+    where: { id: session.user.id },
+    include: { requests: { orderBy: { createdAt: "desc" } } },
+  });
+
+  if (!user) {
+    redirect("/login");
+  }
+
   return (
-    <div
-      className="page-shell"
-      style={{
-        justifyContent: "center",
-        minHeight: "70vh",
-      }}
-    >
-      <div className="stub-card">
-        <div
-          style={{
-            width: "12px",
-            height: "12px",
-            background: "#a855f7",
-            borderRadius: "50%",
-            margin: "0 auto 20px auto",
-            boxShadow: "0 0 12px #a855f7",
-          }}
-        />
-
-        <h1 className="page-title" style={{ fontSize: "clamp(1.4rem, 5vw, 26px)" }}>
-          ЛИЧНЫЙ КАБИНЕТ
-        </h1>
-
-        <div
-          style={{
-            color: "#a855f7",
-            fontFamily: "monospace",
-            fontSize: "11px",
-            letterSpacing: "0.18em",
-            marginBottom: "25px",
-            overflowWrap: "anywhere",
-          }}
-        >
-          // CORE: ACCESS_DENIED // USER_AUTH_SYSTEM_OFFLINE
-        </div>
-
-        <p
-          style={{
-            color: "#9ca3af",
-            fontSize: "14px",
-            lineHeight: "1.7",
-            margin: "0 0 35px 0",
-            textAlign: "left",
-            background: "rgba(168, 85, 247, 0.02)",
-            borderLeft: "3px solid #a855f7",
-            padding: "15px 20px",
-            borderRadius: "0 8px 8px 0",
-          }}
-        >
-          Протокол авторизации находится на стадии закрытого бета-тестирования.
-          Инженерная группа ведет сборку серверной архитектуры, безопасных
-          JWT-сессий и базы данных пользователей. В скором времени здесь будет
-          доступно отслеживание стадий компонентного ремонта электроники,
-          калибровки БПЛА и управление софтверными лицензиями.
+    <div className="page-shell" style={{ alignItems: "stretch", maxWidth: "1100px", margin: "0 auto" }}>
+      <div className="page-header">
+        <div className="home-node">// ЛИЧНЫЙ КАБИНЕТ</div>
+        <h1 className="page-title">Привет, {user.name}</h1>
+        <p style={{ color: "#9ca3af", maxWidth: "640px", margin: "0 auto", fontSize: "14px", lineHeight: 1.6 }}>
+          Здесь ваши данные и заявки. Статус обновляем мы, когда берём работу в работу или заканчиваем.
         </p>
-
-        <Link href="/" className="glass-btn-active">
-          Вернуться на главную
-        </Link>
       </div>
+      <CabinetClient
+        user={{ name: user.name, email: user.email, phone: user.phone ?? "" }}
+        requests={user.requests.map((item) => ({
+          id: item.id,
+          title: item.title,
+          details: item.details,
+          status: item.status,
+          createdAt: item.createdAt.toISOString(),
+        }))}
+      />
     </div>
   );
 }
