@@ -1,5 +1,6 @@
 "use server";
 
+import { randomBytes } from "crypto";
 import { redirect } from "next/navigation";
 import { AuthError } from "next-auth";
 import bcrypt from "bcryptjs";
@@ -146,6 +147,73 @@ export async function createRequestAction(_prev: { error?: string; ok?: boolean 
   await prisma.request.create({
     data: { userId, title, details },
   });
+  return { ok: true, error: "" };
+}
+
+export async function createCatalogRequestAction(
+  _prev: { error?: string; ok?: boolean } | null,
+  formData: FormData,
+) {
+  const service = clean(formData.get("service"));
+  const price = clean(formData.get("price"));
+  const name = clean(formData.get("name"));
+  const email = clean(formData.get("email")).toLowerCase();
+  const phone = clean(formData.get("phone"));
+  const details = clean(formData.get("details"));
+  const source = clean(formData.get("source")) || "услуги";
+
+  if (service.length < 3) return { error: "Не выбрана позиция." };
+  if (name.length < 2) return { error: "Укажите имя — хотя бы два символа." };
+  if (!validEmail(email)) return { error: "Похоже, почта написана с ошибкой." };
+  if (phone.length < 6) return { error: "Укажите телефон, чтобы мы могли дозвониться." };
+  if (details.length < 10) return { error: "Добавьте пару предложений: что нужно и в какие сроки." };
+
+  const session = await auth();
+  let userId = session?.user?.id ?? "";
+
+  if (userId) {
+    const me = await prisma.user.findUnique({ where: { id: userId } });
+    if (!me) userId = "";
+    else if (phone && !me.phone) {
+      await prisma.user.update({ where: { id: userId }, data: { phone } });
+    }
+  }
+
+  if (!userId) {
+    const existing = await prisma.user.findUnique({ where: { email } });
+    if (existing) {
+      userId = existing.id;
+      if (phone && !existing.phone) {
+        await prisma.user.update({ where: { id: userId }, data: { phone } });
+      }
+    } else {
+      const created = await prisma.user.create({
+        data: {
+          name,
+          email,
+          phone: phone || null,
+          passwordHash: await bcrypt.hash(randomBytes(24).toString("hex"), 12),
+          role: "user",
+        },
+      });
+      userId = created.id;
+    }
+  }
+
+  const title = service.length > 90 ? `${service.slice(0, 87)}…` : service;
+  const body = [
+    `Источник: ${source}`,
+    price ? `Цена в каталоге: ${price}` : "",
+    `Контакт: ${name}, ${email}, ${phone}`,
+    details,
+  ]
+    .filter(Boolean)
+    .join("\n");
+
+  await prisma.request.create({
+    data: { userId, title, details: body },
+  });
+
   return { ok: true, error: "" };
 }
 
