@@ -282,3 +282,72 @@
 @media (max-width: 800px) {
   .order-btn { width: 100%; }
 }
+
+/* Compact theme jump-nav — terminal cyan chips */
+
+.theme-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 8px 10px;
+  width: 100%;
+  margin: 0 0 28px 0;
+  color: #00f2ff;
+}
+
+.theme-chip,
+a.theme-chip:visited {
+  color: inherit !important;
+}
+
+.theme-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 8px 14px;
+  box-sizing: border-box;
+  border: 1px solid rgba(0, 242, 255, 0.35);
+  background: rgba(0, 242, 255, 0.06);
+  border-radius: 8px;
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none !important;
+  white-space: nowrap;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+a.theme-chip:hover {
+  background: rgba(0, 242, 255, 0.16);
+  border-color: #00f2ff;
+  color: inherit !important;
+  box-shadow: 0 0 12px rgba(0, 242, 255, 0.25);
+}
+
+.catalog-card {
+  scroll-margin-top: 96px;
+}
+
+@media (max-width: 720px) {
+  .theme-chip {
+    flex: 1 1 calc(50% - 10px);
+    min-width: calc(50% - 10px);
+    white-space: normal;
+    text-align: center;
+  }
+}
+
+@media (max-width: 420px) {
+  .theme-chip {
+    flex: 1 1 100%;
+    min-width: 100%;
+  }
+}
+
+html { scroll-behavior: smooth; }
+@media (max-width: 900px) { .catalog-card { scroll-margin-top: 14.5rem; } }
