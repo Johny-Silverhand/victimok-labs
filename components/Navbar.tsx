@@ -2,7 +2,9 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 import { ContactModal } from "@/app/ContactModal";
+import { LogoutButton } from "@/components/LogoutButton";
 
 const navLinks = [
   { name: "Главная", href: "/" },
@@ -12,6 +14,8 @@ const navLinks = [
 
 export const Navbar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { data: session, status } = useSession();
+  const loggedIn = status === "authenticated" && Boolean(session?.user);
 
   return (
     <>
@@ -36,9 +40,18 @@ export const Navbar = () => {
               Связаться с нами
             </button>
 
-            <Link href="/dashboard" className="glass-btn-active">
-              Личный кабинет
-            </Link>
+            {loggedIn ? (
+              <>
+                <Link href="/dashboard" className="glass-btn-active">
+                  Кабинет
+                </Link>
+                <LogoutButton />
+              </>
+            ) : (
+              <Link href="/login" className="glass-btn-active">
+                Войти
+              </Link>
+            )}
           </div>
         </div>
       </nav>
