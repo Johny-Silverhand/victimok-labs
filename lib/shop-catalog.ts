@@ -7,37 +7,37 @@ export const shopCatalog: CatalogSection[] = [
     category: "📱 СМАРТФОНЫ — ФЛАГИ 2026",
     badge: "NODE: PHONE_STORE",
     color: "#00f2ff",
-    description: "Флагманские смартфоны сезона 2026: линейки iPhone 17, Galaxy S26, складные Samsung, Pixel 10 Pro, Xiaomi 16 и остальные топы. Цены — стартовые по рынку РФ, без учёта конкретной ёмкости и цвета.",
+    description: "Флагманские смартфоны сезона 2026. Цены — «от» по витрине DNS (где модель есть) и крупной рознице РФ на сентябрь 2026. Apple в DNS.ру не продаётся.",
     groups: [
       {
         groupName: "Apple",
         items: [
-          { name: "iPhone 17 128 ГБ", price: "от 89 000 ₽" },
-          { name: "iPhone 17 256 ГБ", price: "от 99 000 ₽" },
-          { name: "iPhone 17 Pro 256 ГБ", price: "от 119 000 ₽" },
-          { name: "iPhone 17 Pro 512 ГБ", price: "от 134 000 ₽" },
-          { name: "iPhone 17 Pro Max 256 ГБ", price: "от 139 000 ₽" },
-          { name: "iPhone 17 Pro Max 512 ГБ", price: "от 159 000 ₽" },
-          { name: "iPhone 17 Pro Max 1 ТБ", price: "от 179 000 ₽" },
+          { name: "iPhone 17 128 ГБ", price: "от 58 000 ₽" },
+          { name: "iPhone 17 256 ГБ", price: "от 66 490 ₽" },
+          { name: "iPhone 17 Pro 256 ГБ", price: "от 72 399 ₽" },
+          { name: "iPhone 17 Pro 512 ГБ", price: "от 99 999 ₽" },
+          { name: "iPhone 17 Pro Max 256 ГБ", price: "от 81 099 ₽" },
+          { name: "iPhone 17 Pro Max 512 ГБ", price: "от 119 990 ₽" },
+          { name: "iPhone 17 Pro Max 1 ТБ", price: "от 126 250 ₽" },
         ],
       },
       {
         groupName: "Samsung",
         items: [
-          { name: "Galaxy S26 256 ГБ", price: "от 79 000 ₽" },
-          { name: "Galaxy S26+ 256 ГБ", price: "от 89 000 ₽" },
-          { name: "Galaxy S26+ 512 ГБ", price: "от 99 000 ₽" },
-          { name: "Galaxy S26 Ultra 256 ГБ", price: "от 109 000 ₽" },
-          { name: "Galaxy S26 Ultra 512 ГБ", price: "от 124 000 ₽" },
-          { name: "Galaxy S26 Ultra 1 ТБ", price: "от 139 000 ₽" },
-          { name: "Galaxy Z Fold7 512 ГБ", price: "от 149 000 ₽" },
-          { name: "Galaxy Z Flip7 256 ГБ", price: "от 89 000 ₽" },
+          { name: "Galaxy S26 256 ГБ", price: "от 89 990 ₽" },
+          { name: "Galaxy S26+ 256 ГБ", price: "от 104 990 ₽" },
+          { name: "Galaxy S26+ 512 ГБ", price: "от 119 990 ₽" },
+          { name: "Galaxy S26 Ultra 256 ГБ", price: "от 124 990 ₽" },
+          { name: "Galaxy S26 Ultra 512 ГБ", price: "от 144 990 ₽" },
+          { name: "Galaxy S26 Ultra 1 ТБ", price: "от 189 990 ₽" },
+          { name: "Galaxy Z Fold7 512 ГБ", price: "от 166 990 ₽" },
+          { name: "Galaxy Z Flip7 256 ГБ", price: "от 91 999 ₽" },
         ],
       },
       {
         groupName: "другие флаги",
         items: [
-          { name: "Pixel 10 Pro 256 ГБ", price: "от 79 000 ₽" },
+          { name: "Pixel 10 Pro 256 ГБ", price: "от 77 990 ₽" },
           { name: "Pixel 10 Pro XL 512 ГБ", price: "от 89 000 ₽" },
           { name: "Xiaomi 16 256 ГБ", price: "от 59 000 ₽" },
           { name: "Xiaomi 16 Ultra 512 ГБ", price: "от 79 000 ₽" },
@@ -54,14 +54,14 @@ export const shopCatalog: CatalogSection[] = [
     category: "💻 НОУТБУКИ — ФЛАГИ 2026",
     badge: "NODE: NOTEBOOK_STORE",
     color: "#818cf8",
-    description: "Новые флагманские ноутбуки: линейка MacBook на M4, ультрабуки Dell / ASUS / ThinkPad / Surface и игровые ROG / Legion / Razer / MSI. Цены — старт конфигурации, апгрейд RAM/SSD — отдельно.",
+    description: "Новые флагманские ноутбуки. Цены — «от» по текущим витринам РФ (MacBook в DNS.ру нет). Апгрейд RAM/SSD — отдельно.",
     groups: [
       {
         groupName: "Apple",
         items: [
-          { name: "MacBook Air 15 M4 16/256", price: "от 149 000 ₽" },
-          { name: "MacBook Air 15 M4 24/512", price: "от 179 000 ₽" },
-          { name: "MacBook Pro 14 M4 Pro 24/512", price: "от 229 000 ₽" },
+          { name: "MacBook Air 15 M4 16/256", price: "от 92 900 ₽" },
+          { name: "MacBook Air 15 M4 24/512", price: "от 128 990 ₽" },
+          { name: "MacBook Pro 14 M4 Pro 24/512", price: "от 161 999 ₽" },
           { name: "MacBook Pro 14 M4 Pro 48/1 ТБ", price: "от 289 000 ₽" },
           { name: "MacBook Pro 16 M4 Max 36/1 ТБ", price: "от 349 000 ₽" },
           { name: "MacBook Pro 16 M4 Max 64/2 ТБ", price: "от 429 000 ₽" },
@@ -80,9 +80,9 @@ export const shopCatalog: CatalogSection[] = [
       {
         groupName: "игровые",
         items: [
-          { name: "ROG Zephyrus G16 RTX 5080", price: "от 249 000 ₽" },
+          { name: "ROG Zephyrus G16 RTX 5080", price: "от 486 990 ₽" },
           { name: "Legion Pro 7i RTX 5080", price: "от 239 000 ₽" },
-          { name: "Razer Blade 16 RTX 5090", price: "от 389 000 ₽" },
+          { name: "Razer Blade 16 RTX 5090", price: "от 355 776 ₽" },
           { name: "MSI Stealth 18 RTX 5090", price: "от 359 000 ₽" },
         ],
       },
@@ -94,14 +94,14 @@ export const shopCatalog: CatalogSection[] = [
     category: "🎧 ПЛАНШЕТЫ, ЧАСЫ И АУДИО",
     badge: "NODE: TABLET_AUDIO",
     color: "#f59e0b",
-    description: "Планшеты флагманского класса, часы Ultra / Series и беспроводное аудио. Стартовые цены по рынку РФ, без учёта гравировки и AppleCare.",
+    description: "Планшеты, часы и аудио. Цены — «от» по рознице РФ (Apple не в DNS.ру). AirPods Pro 3 — витрина DNS.",
     groups: [
       {
         groupName: "Планшеты",
         items: [
-          { name: "iPad Pro 13 M4 256 ГБ Wi-Fi", price: "от 129 000 ₽" },
+          { name: "iPad Pro 13 M4 256 ГБ Wi-Fi", price: "от 95 990 ₽" },
           { name: "iPad Pro 13 M4 1 ТБ Wi-Fi + Cellular", price: "от 179 000 ₽" },
-          { name: "iPad Air 13 M3 256 ГБ", price: "от 89 000 ₽" },
+          { name: "iPad Air 13 M3 256 ГБ", price: "от 68 690 ₽" },
           { name: "Galaxy Tab S10 Ultra 512 ГБ", price: "от 99 000 ₽" },
         ],
       },
@@ -116,8 +116,8 @@ export const shopCatalog: CatalogSection[] = [
       {
         groupName: "Аудио",
         items: [
-          { name: "AirPods Pro 3 USB-C", price: "от 24 000 ₽" },
-          { name: "Sony WH-1000XM6", price: "от 34 000 ₽" },
+          { name: "AirPods Pro 3 USB-C", price: "от 23 999 ₽" },
+          { name: "Sony WH-1000XM6", price: "от 25 950 ₽" },
           { name: "Bose QC Ultra Headphones", price: "от 36 000 ₽" },
           { name: "Galaxy Buds3 Pro", price: "от 16 000 ₽" },
         ],
@@ -130,15 +130,15 @@ export const shopCatalog: CatalogSection[] = [
     category: "🖥 ПК И ЖЕЛЕЗО",
     badge: "NODE: SILICON_RIG",
     color: "#38bdf8",
-    description: "Компоненты класса RTX 5080/5090, Ryzen 9 9950X и Core Ultra 9, DDR5 64 ГБ, NVMe Gen5, платы X870, блоки 1000 Вт и мониторы 27\" 4K 240 Гц. Сборки офис / игры — под ключ.",
+    description: "Компоненты класса RTX 50 и Ryzen 9 / Core Ultra 9. Видеокарты — нижняя полка DNS. Сборки под ключ считаются от железа.",
     groups: [
       {
         groupName: "Процессоры и видеокарты",
         items: [
-          { name: "NVIDIA GeForce RTX 5080 16 ГБ", price: "от 129 000 ₽" },
-          { name: "NVIDIA GeForce RTX 5090 32 ГБ", price: "от 219 000 ₽" },
-          { name: "AMD Ryzen 9 9950X", price: "от 64 000 ₽" },
-          { name: "Intel Core Ultra 9 285K", price: "от 69 000 ₽" },
+          { name: "NVIDIA GeForce RTX 5080 16 ГБ", price: "от 119 999 ₽" },
+          { name: "NVIDIA GeForce RTX 5090 32 ГБ", price: "от 389 999 ₽" },
+          { name: "AMD Ryzen 9 9950X", price: "от 42 990 ₽" },
+          { name: "Intel Core Ultra 9 285K", price: "от 54 990 ₽" },
         ],
       },
       {
@@ -156,8 +156,8 @@ export const shopCatalog: CatalogSection[] = [
         items: [
           { name: "Монитор 27\" 4K 240 Гц OLED", price: "от 89 000 ₽" },
           { name: "Сборка офисный контур под ключ", price: "от 75 000 ₽" },
-          { name: "Сборка игровой контур под ключ (RTX 5080)", price: "от 240 000 ₽" },
-          { name: "Сборка максимальный контур (RTX 5090)", price: "от 380 000 ₽" },
+          { name: "Сборка игровой контур под ключ (RTX 5080)", price: "от 265 000 ₽" },
+          { name: "Сборка максимальный контур (RTX 5090)", price: "от 530 000 ₽" },
         ],
       },
     ],
@@ -319,8 +319,8 @@ export const shopCatalog: CatalogSection[] = [
       {
         groupName: "Сеть, NAS и питание",
         items: [
-          { name: "Wi-Fi 7 mesh (комплект 2 ноды)", price: "от 28 000 ₽" },
-          { name: "NAS 4-bay (без дисков, 2.5/3.5)", price: "от 42 000 ₽" },
+          { name: "Wi-Fi 7 mesh (комплект 2 ноды)", price: "от 24 290 ₽" },
+          { name: "NAS 4-bay (без дисков, 2.5/3.5)", price: "от 62 499 ₽" },
           { name: "Power bank 65W 20 000 мА·ч", price: "от 6 500 ₽" },
         ],
       },
