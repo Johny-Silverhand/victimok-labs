@@ -1,8 +1,11 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
+import { OrderModal, type CatalogItem } from "@/components/OrderModal";
 
 export default function ServicesPage() {
+  const [order, setOrder] = useState<CatalogItem | null>(null);
   const deepServices = [
     {
       category: "💻 ДЕПАРТАМЕНТ ЦИФРОВЫХ АБСТРАКЦИЙ & SOFTWARE ARCHITECTURE",
@@ -175,6 +178,13 @@ export default function ServicesPage() {
                         >
                           {item.price}
                         </span>
+                        <button
+                          type="button"
+                          className="order-btn"
+                          onClick={() => setOrder({ name: item.name, price: item.price, source: "услуги" })}
+                        >
+                          Заявка
+                        </button>
                       </div>
                     ))}
                   </div>
@@ -193,6 +203,7 @@ export default function ServicesPage() {
           <button type="button" className="cyber-btn-secondary">Вернуться в терминал</button>
         </Link>
       </div>
+      <OrderModal item={order} onClose={() => setOrder(null)} />
     </div>
   );
 }

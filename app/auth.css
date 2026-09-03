@@ -220,3 +220,65 @@
     align-items: stretch;
   }
 }
+
+.order-btn {
+  flex-shrink: 0;
+  min-height: 40px;
+  padding: 8px 14px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #00f2ff;
+  background: rgba(0, 242, 255, 0.08);
+  border: 1px solid rgba(0, 242, 255, 0.35);
+  border-radius: 8px;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.order-btn:hover {
+  background: #00f2ff;
+  color: #000;
+}
+.order-card {
+  text-align: left;
+  max-width: 520px;
+  max-height: min(90vh, 720px);
+  overflow-y: auto;
+}
+.order-title {
+  color: #fff;
+  font-size: 22px;
+  margin: 0 0 8px 0;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.order-item {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  margin: 0 0 6px 0;
+  line-height: 1.4;
+}
+.order-price {
+  color: #00f2ff;
+  font-family: monospace;
+  font-size: 13px;
+  margin: 0 0 14px 0;
+}
+.order-cancel {
+  margin-top: 16px;
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: #ef4444;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  min-height: 44px;
+}
+@media (max-width: 800px) {
+  .order-btn { width: 100%; }
+}
